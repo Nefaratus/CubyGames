@@ -126,8 +126,6 @@ public class Player : MonoBehaviour {
 			}
 
 	}
-
-
 	
 	/*
 	 * Creates a respawn button for when a player wants to respawn 

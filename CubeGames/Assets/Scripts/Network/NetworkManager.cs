@@ -10,7 +10,7 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject playerPrefab,standbyCamera,Objective;
 	public string name,currentMessage;
 	GameObject[] points, totalObjective;
-	bool joinedServer;
+	bool joinedServer, nameSet;
 
 	void Start()
 	{
@@ -38,7 +38,6 @@ public class NetworkManager : MonoBehaviour {
 	void OnServerInitialized()
 	{
 		Debug.Log("Server Initializied");
-		SpawnPlayer();
 		joinedServer = true;
 	}
 
@@ -108,21 +107,23 @@ public class NetworkManager : MonoBehaviour {
 				}
 			}
 		}
-
-		name = GUI.TextField(new Rect (10, Screen.height-50, 100, 20), name);
-
-		if(GUI.Button(new Rect(120, Screen.height-50, 100, 20),"Send"))
+		
+		if(nameSet != true && joinedServer == true)
 		{
-			SetPlayerName();
+			name = GUI.TextField(new Rect (Screen.width/2 - 100 , Screen.height/2, 100, 50), name);
+
+			if(GUI.Button(new Rect(Screen.width/2 + 20, Screen.height/2, 100, 50),"Set Name"))
+			{
+				SpawnPlayer();
+				SetPlayerName();
+				nameSet = true;
+			}
 		}
 
-		if (GUI.Button (new Rect (Screen.width - 100,Screen.height - 50,100,50), "Exit"))
-		{
-			Application.Quit();
-		}
-
-
-
+			if (GUI.Button (new Rect (Screen.width - 100,Screen.height - 50,100,50), "Exit"))
+			{
+				Application.Quit();
+			}
 		
 	}
 
