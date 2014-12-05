@@ -25,8 +25,6 @@ public class NetworkManager : MonoBehaviour {
 			if(totalObjective.Length != 5)
 		   		SpawnObjective();
 		}
-
-
 	}
 
 	private void StartServer()
@@ -60,7 +58,7 @@ public class NetworkManager : MonoBehaviour {
 	void OnConnectedToServer()
 	{
 		Debug.Log("Server Joined");
-		SpawnPlayer();
+		joinedServer = true;
 	}
 
 
@@ -110,9 +108,9 @@ public class NetworkManager : MonoBehaviour {
 		
 		if(nameSet != true && joinedServer == true)
 		{
-			name = GUI.TextField(new Rect (Screen.width/2 - 100 , Screen.height/2, 100, 50), name);
+			name = GUI.TextField(new Rect (Screen.width/2 - 100 , Screen.height/2, 100, 25), name);
 
-			if(GUI.Button(new Rect(Screen.width/2 + 20, Screen.height/2, 100, 50),"Set Name"))
+			if(GUI.Button(new Rect(Screen.width/2 + 20, Screen.height/2, 100, 25),"Set Name"))
 			{
 				SpawnPlayer();
 				SetPlayerName();
