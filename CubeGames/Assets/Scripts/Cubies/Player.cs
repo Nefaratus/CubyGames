@@ -68,6 +68,9 @@ public class Player : MonoBehaviour {
 		return point;
 	}
 
+	/*
+	 * Changes the colour of the player's gameObject
+	 */ 
 
 	[RPC]
 	public void SetColor(Vector3 col)
@@ -80,11 +83,16 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+
+	/*
+	 * Sets the name of the player within the Game and Network
+	 * Also sets the name of the game object so that when creators run the game in the editor they can see which object is who
+	 */
 	[RPC]
 	public void SetName(string name)
 	{
 		PlayerName = name;
-
+		gameObject.name = name;
 		if(networkView.isMine)
 		{
 			networkView.RPC ("SetName", RPCMode.OthersBuffered, name);
@@ -92,6 +100,10 @@ public class Player : MonoBehaviour {
 		
 	}
 
+	/*
+	 * When a player is Victorious they will be removed from the game
+	 * This methods makes sure that the player gets removed across the server
+	 */
 	[RPC]
 	public void Victory()
 	{
@@ -100,6 +112,10 @@ public class Player : MonoBehaviour {
 		renderer.enabled = false;
 	}
 
+
+	/*
+	 * This adds the score towards the player that has scored and updates it across the network
+	 */
 	[RPC]
 	public void addScore(string PlayerName,int Points)
 	{
@@ -111,8 +127,15 @@ public class Player : MonoBehaviour {
 
 	}
 
+
+	
+	/*
+	 * Creates a respawn button for when a player wants to respawn 
+	 */
 	void OnGUI()
 	{
+
+
 		if (GUI.Button (new Rect (Screen.width - 250,Screen.height - 50,100,50), "Respawn"))
 		{
 			gameObject.transform.position = new Vector3 (0,1,0);

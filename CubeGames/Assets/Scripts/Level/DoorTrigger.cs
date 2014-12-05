@@ -11,19 +11,16 @@ public class DoorTrigger : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider col) {
-			if (active == true)
-			{	
-				target.SetActive (false);
-				active = false;
-			}
-						
-			else if(active == false)
-			{
-				target.SetActive (true);
-				active = true;
-			}
+	void OnTriggerEnter(Collider col)
+	{
+		target.SetActive (false);
 	}
+
+	void OnTriggerExit(Collider col) 
+	{
+		target.SetActive (true);
+	}
+
 	// Update is called once per frame
 	void Update () {
 	
