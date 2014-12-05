@@ -4,15 +4,16 @@ using System.Collections;
 public class Objective : MonoBehaviour {
 	public int height;
 	public Player player;
-	public GameObject[] coolList;
+	public GameObject[] playerList;
 	public string PlayerName;
 	public int PlayerScore;
-	public string PlayerNewas;
 	public Color color;
+	public ParticleSystem ps;
 
 	// Use this for initialization
 	void Start () {
 		renderer.material.color = new Color (1, 0, 0);
+		ps = GetComponent<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -26,7 +27,7 @@ public class Objective : MonoBehaviour {
 		player.addScore (player.PlayerName,1);
 		height += 10;
 		networkView.RPC("Explosion",RPCMode.AllBuffered, new object[]{player.playerColor, 325 });
-		//Destroy (gameObject);
+		Destroy (gameObject,ps.duration);
 
 	}
 
@@ -40,11 +41,14 @@ public class Objective : MonoBehaviour {
 		gameObject.collider.enabled = false;
 	}
 
-
 	void OnGUI()
 	{
-		coolList = GameObject.FindGameObjectsWithTag ("Player");
-		foreach (GameObject p in coolList) {
+
+		/*
+		 *Create a basic UI for the score list where in all player names are noted and their scores behind it.		 *
+		 */ 
+		playerList = GameObject.FindGameObjectsWithTag ("Player");
+		foreach (GameObject p in playerList) {
 			PlayerName = p.GetComponent<Player> ().PlayerName;
 			PlayerScore = p.GetComponent<Player> ().point;
 			GUI.Label(new Rect (10, height, 100, 20), PlayerName + " : " + PlayerScore,"box");

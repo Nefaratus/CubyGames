@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Project Kingdom\Project-Kingdom\Assets\Scripts\Multiplayer\NetworkManager2.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Network\NetworkManager.cs">
     <Files>
-      <File FileName="..\Project Kingdom\Project-Kingdom\Assets\Scripts\Multiplayer\NetworkManager2.cs" Line="22" Column="3" />
+      <File FileName="Assets\Scripts\Objective\Objective.cs" Line="29" Column="44" />
+      <File FileName="Assets\Scripts\Network\NetworkManager.cs" Line="87" Column="22" />
+      <File FileName="Assets\Scripts\Cubies\Player.cs" Line="7" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

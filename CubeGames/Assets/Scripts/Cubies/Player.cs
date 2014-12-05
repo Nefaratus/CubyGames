@@ -5,11 +5,6 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour {
 
 	public float speed = 10f;
-	private float lastSynchronizationTime = 0f;
-	private float syncDelay = 0f;
-	private float syncTime = 0f;
-	private Vector3 syncStartPosition = Vector3.zero;
-	private Vector3 syncEndPosition = Vector3.zero;
 	public int point,totalPoints;	
 	public string PlayerName;
 	public Vector3 playerColor;
@@ -18,6 +13,8 @@ public class Player : MonoBehaviour {
 	void Start()
 	{
 		totalPoints = 10;
+		playerColor =  new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+		SetColor (playerColor);
 	}
 
 	void Update()

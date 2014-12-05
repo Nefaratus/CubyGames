@@ -9,11 +9,24 @@ public class NetworkManager : MonoBehaviour {
 	private HostData[] hostList;
 	public GameObject playerPrefab,standbyCamera,Objective;
 	public string name,currentMessage;
-	GameObject[] points;	
+	GameObject[] points, totalObjective;
+	bool joinedServer;
 
 	void Start()
 	{
 		points = GameObject.FindGameObjectsWithTag("Respawn");
+	}
+
+	void Update()
+	{
+		totalObjective = GameObject.FindGameObjectsWithTag ("Objective");
+		if(joinedServer == true)
+		{
+			if(totalObjective.Length != 5)
+		   		SpawnObjective();
+		}
+
+
 	}
 
 	private void StartServer()
@@ -26,7 +39,7 @@ public class NetworkManager : MonoBehaviour {
 	{
 		Debug.Log("Server Initializied");
 		SpawnPlayer();
-		SpawnObjective ();
+		joinedServer = true;
 	}
 
 	private void RefreshHostList()
@@ -72,13 +85,8 @@ public class NetworkManager : MonoBehaviour {
 
 	void SpawnObjective()
 	{
-		foreach (GameObject item in points) {
-			//GameObject objPoint = points [Random.Range (0, points.Length)];
-			//Debug.Log (item.ToString());
-			Network.Instantiate (Objective, item.transform.position, Quaternion.identity,0);
-				}
-
-
+		GameObject objPoint = points [Random.Range (0, points.Length)];
+		Network.Instantiate (Objective, objPoint.transform.position, Quaternion.identity,0);
 	}
 	
 	void OnGUI()
