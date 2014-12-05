@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{A9A3995E-2B65-1EB7-BE0A-90CA73BF4344}") = "CubeGames", "Assembly-CSharp-firstpass-vs.csproj", "{CC9799E8-F81F-1159-AF1C-A1894C5E7CD7}"
+EndProject
+Project("{A9A3995E-2B65-1EB7-BE0A-90CA73BF4344}") = "CubeGames", "Assembly-CSharp-vs.csproj", "{04BD82C4-C106-5B9C-AD5D-C3651E7098F1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC9799E8-F81F-1159-AF1C-A1894C5E7CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9799E8-F81F-1159-AF1C-A1894C5E7CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9799E8-F81F-1159-AF1C-A1894C5E7CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9799E8-F81F-1159-AF1C-A1894C5E7CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04BD82C4-C106-5B9C-AD5D-C3651E7098F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04BD82C4-C106-5B9C-AD5D-C3651E7098F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04BD82C4-C106-5B9C-AD5D-C3651E7098F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04BD82C4-C106-5B9C-AD5D-C3651E7098F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+																																							GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
