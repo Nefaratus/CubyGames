@@ -120,6 +120,18 @@ public class Player : MonoBehaviour {
 			}
 	}
 
+	[RPC]
+	public void Respawn()
+	{
+		gameObject.transform.position = new Vector3 (0,1,0);
+		point = 0;
+		if(renderer.enabled == false)
+			renderer.enabled = true;
+		if(networkView.isMine)
+		{
+			networkView.RPC("Respawn", RPCMode.OthersBuffered);
+		}
+	}
 
 	/*
 	 * Creates a respawn button for when a player wants to respawn 
@@ -130,10 +142,7 @@ public class Player : MonoBehaviour {
 
 		if (GUI.Button (new Rect (Screen.width - 250,Screen.height - 50,100,50), "Respawn"))
 		{
-			gameObject.transform.position = new Vector3 (0,1,0);
-			point = 0;
-			if(renderer.enabled == false)
-				renderer.enabled = true;
+			Respawn();
 		}
 	}
 }

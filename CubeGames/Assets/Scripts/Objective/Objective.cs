@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class Objective : MonoBehaviour {
@@ -46,6 +47,7 @@ public class Objective : MonoBehaviour {
 		/*
 		 *Create a basic UI for the score list where in all player names are noted and their scores behind it.		 *
 		 */ 
+		try{
 		playerList = GameObject.FindGameObjectsWithTag ("Player");
 		foreach (GameObject p in playerList) {
 			PlayerName = p.gameObject.name;
@@ -55,7 +57,8 @@ public class Objective : MonoBehaviour {
 
 		}
 		height = 20;
-
+		}catch(Exception  e)
+		{}
 	}
 
 }
