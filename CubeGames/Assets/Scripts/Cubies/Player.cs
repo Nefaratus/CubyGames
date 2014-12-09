@@ -92,10 +92,6 @@ public class Player : MonoBehaviour {
 	public void SetName(string name)
 	{
 		gameObject.name = name;
-		if(networkView.isMine)
-		{
-			networkView.RPC ("SetName", RPCMode.AllBuffered,PlayerName, name);
-		}
 	}
 
 	/*
