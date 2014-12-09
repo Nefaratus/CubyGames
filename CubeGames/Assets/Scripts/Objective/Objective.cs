@@ -22,17 +22,23 @@ public class Objective : MonoBehaviour {
 
 	}
 
+	/*
+	 *When the player collides with an Objective add a point to the score of this player and explode using that player his color.
+	 *After the particle is done destroy this object so a new one can spawn. The spawning of a new Objective is monitored in the NetworkManager.
+	 */
 	void OnTriggerEnter(Collider col)
 	{
 		player = (Player)col.gameObject.GetComponent ("Player");
 		player.addScore (player.PlayerName,1);
 		height += 10;
-		networkView.RPC("Explosion",RPCMode.AllBuffered, new object[]{player.playerColor, 325 });
+		networkView.RPC("Explosion",RPCMode.All, new object[]{player.playerColor, 325 });
 		Destroy (gameObject,ps.duration);
 
 	}
 
-
+	/*
+	 * Activates the Explosion for all players that are in the game.
+	 */
 	[RPC]
 	void Explosion(Vector3 col,int count)
 	{
@@ -42,11 +48,12 @@ public class Objective : MonoBehaviour {
 		gameObject.collider.enabled = false;
 	}
 
+	/*
+	 *Create a basic UI for the score list where in all player names are noted and their scores behind it.		 *
+	 */ 
 	void OnGUI()
 	{
-		/*
-		 *Create a basic UI for the score list where in all player names are noted and their scores behind it.		 *
-		 */ 
+
 		try{
 		playerList = GameObject.FindGameObjectsWithTag ("Player");
 		foreach (GameObject p in playerList) {

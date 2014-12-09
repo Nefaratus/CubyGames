@@ -17,6 +17,10 @@ public class Player : MonoBehaviour {
 		SetColor (playerColor);
 	}
 
+	/*
+	 * In here the program will look if the player points are higher or equal to the totalpoints needed for Victory.
+	 * And if the networkview on this object isMine then use Inputmovement and ColourChange.
+	 */
 	void Update()
 	{
 		if(point >= totalPoints)
@@ -29,12 +33,11 @@ public class Player : MonoBehaviour {
 			InputMovement();
 			InputColorChange();
 		}
-		else
-		{
-		//	SyncedMovement();
-		}
 	}
-	
+
+	/*
+	 * Basic movement for the player gameobject
+	 */
 	void InputMovement()
 	{
 		if (Input.GetKey(KeyCode.W))
@@ -50,16 +53,17 @@ public class Player : MonoBehaviour {
 			rigidbody.MovePosition(rigidbody.position - Vector3.right * speed * Time.deltaTime);
 	}
 
+	/*
+	 * Checks if the player has pressed the R button in his/her keyboard and if true it calls the SetColor method.
+	 */ 
 	private void InputColorChange()
 	{
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			//Debug.Log("Hallo");
 			playerColor =  new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
 			SetColor (playerColor);
 
 		}
-
 	}
 
 
@@ -69,7 +73,7 @@ public class Player : MonoBehaviour {
 	}
 
 	/*
-	 * Changes the colour of the player's gameObject
+	 * Changes the colour of the player's gameObject to a random colour.
 	 */ 
 
 	[RPC]
@@ -82,7 +86,6 @@ public class Player : MonoBehaviour {
 			networkView.RPC ("SetColor", RPCMode.OthersBuffered, col);
 		}
 	}
-
 
 	/*
 	 * Sets the name of the player within the Game and Network
@@ -120,6 +123,10 @@ public class Player : MonoBehaviour {
 			}
 	}
 
+	/*
+	 * Respawns the player into the game.
+	 * By re-enabling the renderer on the players gameobject 
+	 */ 
 	[RPC]
 	public void Respawn()
 	{
@@ -138,8 +145,6 @@ public class Player : MonoBehaviour {
 	 */
 	void OnGUI()
 	{
-
-
 		if (GUI.Button (new Rect (Screen.width - 250,Screen.height - 50,100,50), "Respawn"))
 		{
 			Respawn();
