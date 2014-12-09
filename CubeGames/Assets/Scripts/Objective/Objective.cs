@@ -43,13 +43,12 @@ public class Objective : MonoBehaviour {
 
 	void OnGUI()
 	{
-
 		/*
 		 *Create a basic UI for the score list where in all player names are noted and their scores behind it.		 *
 		 */ 
 		playerList = GameObject.FindGameObjectsWithTag ("Player");
 		foreach (GameObject p in playerList) {
-			PlayerName = p.GetComponent<Player> ().PlayerName;
+			PlayerName = p.gameObject.name;
 			PlayerScore = p.GetComponent<Player> ().point;
 			GUI.Label(new Rect (10, height, 100, 20), PlayerName + " : " + PlayerScore,"box");
 			height+=25;

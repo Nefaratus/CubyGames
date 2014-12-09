@@ -22,7 +22,7 @@ public class NetworkManager : MonoBehaviour {
 		totalObjective = GameObject.FindGameObjectsWithTag ("Objective");
 		if(joinedServer == true)
 		{
-			if(totalObjective.Length != 5)
+			if(totalObjective.Length < 5)
 		   		SpawnObjective();
 		}
 	}
@@ -35,7 +35,7 @@ public class NetworkManager : MonoBehaviour {
 
 	void OnServerInitialized()
 	{
-		Debug.Log("Server Initializied");
+		Debug.Log("Server Initializied");		
 		joinedServer = true;
 	}
 
@@ -69,11 +69,11 @@ public class NetworkManager : MonoBehaviour {
 		Network.DestroyPlayerObjects(player);
 	}
 
-	private void SpawnPlayer()
+	private void SpawnPlayer(string playerName)
 	{
 		GameObject myPlayer = (GameObject)Network.Instantiate (playerPrefab, new Vector3 (0,1,0), Quaternion.identity, 0);
 		standbyCamera.SetActive (false);
-		
+		myPlayer.networkView.RPC ("SetName", RPCMode.AllBuffered, name);
 		//Setting on the objects of the player so that only the player has them in his client
 		myPlayer.GetComponent<Player>().enabled = true;		
 		myPlayer.transform.FindChild ("CubyCamera").gameObject.SetActive (true);
@@ -112,7 +112,6 @@ public class NetworkManager : MonoBehaviour {
 
 			if(GUI.Button(new Rect(Screen.width/2 + 20, Screen.height/2, 100, 25),"Set Name"))
 			{
-				SpawnPlayer();
 				SetPlayerName();
 				nameSet = true;
 			}
@@ -124,13 +123,16 @@ public class NetworkManager : MonoBehaviour {
 			}
 		
 	}
-
+	
 	void SetPlayerName()
 	{
 		if(!string.IsNullOrEmpty(name.Trim()))
-		{
-			GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SetName(name);
+		{			
+			SpawnPlayer(name);
 			name = string.Empty;
 		}
 	}
+
+
+
 }

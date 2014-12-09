@@ -91,13 +91,11 @@ public class Player : MonoBehaviour {
 	[RPC]
 	public void SetName(string name)
 	{
-		PlayerName = name;
 		gameObject.name = name;
 		if(networkView.isMine)
 		{
-			networkView.RPC ("SetName", RPCMode.OthersBuffered, name);
+			networkView.RPC ("SetName", RPCMode.AllBuffered,PlayerName, name);
 		}
-		
 	}
 
 	/*
@@ -124,9 +122,9 @@ public class Player : MonoBehaviour {
 			{
 				networkView.RPC ("addScore", RPCMode.OthersBuffered,PlayerName, Points);
 			}
-
 	}
-	
+
+
 	/*
 	 * Creates a respawn button for when a player wants to respawn 
 	 */
