@@ -13,7 +13,8 @@ public class DoorTrigger : MonoBehaviour {
 	 */
 	void OnTriggerEnter(Collider col)
 	{
-		target.SetActive (false);
+		if(target != null)
+			target.SetActive (false);
 	}
 
 	/*

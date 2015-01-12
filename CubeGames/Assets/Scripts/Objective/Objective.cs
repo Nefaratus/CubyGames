@@ -32,6 +32,7 @@ public class Objective : MonoBehaviour {
 		player.addScore (player.PlayerName,1);
 		height += 10;
 		networkView.RPC("Explosion",RPCMode.All, new object[]{player.playerColor, 325 });
+		col.GetComponentInChildren<SoundEffects> ().PlayDing ();
 		Destroy (gameObject,ps.duration);
 
 	}
